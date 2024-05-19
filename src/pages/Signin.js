@@ -133,7 +133,7 @@ export default function Signin() {
                 </button>
               </div>
               <p className='con text-orange-200 flex justify-center mt-5 gap-2 text-xl mb-2'>
-                New user??<Link to='/signup' className='text-sky-400'>
+                New user??<Link to='/register' className='text-sky-400'>
                   Signup
                 </Link>
               </p>

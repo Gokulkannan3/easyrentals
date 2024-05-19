@@ -5,7 +5,7 @@ export default function Pgroom() {
   return (
     <div>
       <Allnav/>
-      Normal
+      Pg
     </div>
   )
 }

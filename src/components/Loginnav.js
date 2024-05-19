@@ -23,7 +23,7 @@ export default function Loginnav() {
     if (storedUserData) {
       setUserData(JSON.parse(storedUserData));
     } else {
-      axios.get(`http://localhost:3002/isAuth`, {
+      axios.get(`https://ebackend-1llz.onrender.com/isAuth`, {
         headers: {
           "x-access-token": localStorage.getItem("token"),
         }

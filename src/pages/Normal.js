@@ -8,7 +8,7 @@ export default function Normal() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://ebackend-1llz.onrender.com/owners', {
+        const response = await axios.get('https://ebackend-1llz.onrender.com/ownern', {
           headers: {
             'Content-Type': 'application/json'
           }
@@ -30,7 +30,7 @@ export default function Normal() {
   return (
     <div>
       <Allnav />
-      <h1>Owners</h1>
+      <h1>Normal</h1>
       {owners.length > 0 ? (
         owners.map((owner, index) => (
           <div key={index}>
