@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Allnav from '../components/Allnav';
 
-export default function Owneracpt() {
+export default function Studacpt() {
   const [enquiries, setEnquiries] = useState([]);
 
   useEffect(() => {
@@ -18,56 +18,25 @@ export default function Owneracpt() {
       console.error('Token or user data not found in local storage');
       return;
     }
-    
+
     const userData = JSON.parse(storedUserData);
     const { name } = userData;
 
-    axios.get(`https://rentalsbackend-c5rm.onrender.com/studentacc?ownername=${name}`, {
+    axios.get(`https://rentalsbackend-c5rm.onrender.com/studentaccept?name=${name}`, {
       headers: {
         'x-access-token': token,
       },
     })
     .then((response) => {
       if (response.data && Array.isArray(response.data)) {
-        setEnquiries(response.data);
+        const filteredEnquiries = response.data.filter(enquiry => enquiry.name === name);
+        setEnquiries(filteredEnquiries);
       } else {
         console.error('Invalid response from the server');
       }
     })
     .catch((error) => {
       console.error('Error fetching enquiries:', error.message);
-    });
-  };
-
-  const handleCancelEnquiry = (id) => {
-    const token = localStorage.getItem('token');
-    axios.delete(`https://rentalsbackend-c5rm.onrender.com/api/enquiries/${id}`, {
-      headers: {
-        'x-access-token': token,
-      },
-    })
-    .then((response) => {
-      console.log(response.data);
-      fetchEnquiries();
-    })
-    .catch((error) => {
-      console.error('Error cancelling enquiry:', error.message);
-    });
-  };
-
-  const handleAcceptEnquiry = (id) => {
-    const token = localStorage.getItem('token');
-    axios.put(`https://rentalsbackend-c5rm.onrender.com/api/enquiries/${id}/accept`, {}, {
-      headers: {
-        'x-access-token': token,
-      },
-    })
-    .then((response) => {
-      console.log(response.data);
-      fetchEnquiries();
-    })
-    .catch((error) => {
-      console.error('Error accepting enquiry:', error.message);
     });
   };
 
@@ -89,13 +58,9 @@ export default function Owneracpt() {
                     </div>
                     <p>Category: {enquiry.category}</p>
                     <p>Contact: {enquiry.contact}</p>
+                    <p>Owner Name: {enquiry.ownername}</p>
+                    <p>Owner Contact: {enquiry.ownercontact}</p>
                     <p>Status: {enquiry.status}</p>
-                    <div className="card-actions justify-end">
-                        <button className='btn w-24 text-xl bg-orange-200 text-teal-950' onClick={() => handleCancelEnquiry(enquiry.id)}>Cancel</button>
-                    </div>
-                    <div className="card-actions justify-end">
-                        <button className='btn w-24 text-xl bg-orange-200 text-teal-950' onClick={() => handleAcceptEnquiry(enquiry.id)}>Accept</button>
-                    </div>
                 </div>
               </div>
             ))}

@@ -67,7 +67,8 @@ export default function Student() {
       name,
       category,
       contact,
-      ownername: owner.name
+      ownername: owner.name,
+      ownercontact:owner.contact
     })
     .then((response) => {
       console.log('User details sent to the backend successfully');
@@ -92,7 +93,7 @@ export default function Student() {
     <Allnav />
     <h1 className="text-center text-3xl font-bold my-8">Owners</h1>
     <div className='flex justify-center mt-10 mb-5'>
-        <Link to='/owneracceptance'>
+        <Link to='/studentaccept'>
           <button className='btn bg-orange-200 text-teal-950 text-xl font bold'>Enquiries</button>
         </Link>
       </div>
