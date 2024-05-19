@@ -20,7 +20,7 @@ export default function Owneracpt() {
     const userData = JSON.parse(storedUserData);
     const { name } = userData;
 
-    axios.get(`http://localhost:3002/studentacc?ownername=${name}`, {
+    axios.get(`https://ebackend-1llz.onrender.com/studentacc?ownername=${name}`, {
       headers: {
         'x-access-token': token,
       },
@@ -39,7 +39,7 @@ export default function Owneracpt() {
 
   const handleCancelEnquiry = (id) => {
     const token = localStorage.getItem('token');
-    axios.delete(`http://localhost:3002/api/enquiries/${id}`, {
+    axios.delete(`https://ebackend-1llz.onrender.com/api/enquiries/${id}`, {
       headers: {
         'x-access-token': token,
       },
@@ -55,7 +55,7 @@ export default function Owneracpt() {
 
   const handleAcceptEnquiry = (id) => {
     const token = localStorage.getItem('token');
-    axios.put(`http://localhost:3002/api/enquiries/${id}/accept`, {}, {
+    axios.put(`https://ebackend-1llz.onrender.com/enquiries/${id}/accept`, {}, {
       headers: {
         'x-access-token': token,
       },

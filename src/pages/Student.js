@@ -34,7 +34,7 @@ export default function Student() {
       setUserData(JSON.parse(storedUserData));
     } else {
       axios
-        .get('http://localhost:3002/isAuth', {
+        .get('https://ebackend-1llz.onrender.com/isAuth', {
           headers: {
             'x-access-token': localStorage.getItem('token'),
           },
@@ -62,7 +62,7 @@ export default function Student() {
     
     const { name, category, contact } = userData;
     
-    axios.post('http://localhost:3002/studentreq', {
+    axios.post('https://ebackend-1llz.onrender.com/studentreq', {
       name,
       category,
       contact,
