@@ -7,6 +7,7 @@ import Student from "./pages/Student";
 import Owner from "./pages/Owner";
 import Normal from "./pages/Normal";
 import Pgroom from "./pages/Pgroom";
+import Owneracpt from "./pages/Owneracpt";
 
 const AllRoutes = () =>{
     return(
@@ -18,6 +19,7 @@ const AllRoutes = () =>{
             <Route exact path="/owner" element={<Owner/>}/>
             <Route exact path="/normal" element={<Normal/>}/>
             <Route exact path="/pg" element={<Pgroom/>}/>
+            <Route exact path="/owneracceptance" element={<Owneracpt/>}/>
         </Routes> 
     )
 }

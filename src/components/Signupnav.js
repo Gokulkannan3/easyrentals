@@ -65,7 +65,7 @@ export default function Signupnav() {
     <div className='bg-teal-950 h-24'>
         <img className='w-16 h-16 ml-6 translate-y-3'alt='logo' src={Logo}/>
       <div className='flex justify-center -translate-y-10'>
-        <p className='text-orange-200 text-center text-4xl font-bold'>Easy Rentals!!</p>
+        <p className='text-orange-200 text-center text-4xl font-bold'>Easy Houses!!</p>
       </div>
       <div className="flex justify-end -translate-y-20">
           {['right'].map((anchor) => (

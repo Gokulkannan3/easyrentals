@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Allnav from '../components/Allnav';
 import '../App.css';
+import { Link } from 'react-router-dom';
 
 export default function Owner() {
   const [formData, setFormData] = useState({
@@ -74,7 +75,13 @@ export default function Owner() {
   return (
     <div>
       <Allnav />
+      <div className='flex justify-center mt-10 mb-5'>
+        <Link to='/owneracceptance'>
+          <button className='btn bg-orange-200 text-teal-950 text-xl font bold'>Enquiries</button>
+        </Link>
+      </div>
       <div className="flex justify-center items-center mt-10">
+      
         <form onSubmit={handleSubmit} className="w-1/2">
         <div className='grid grid-cols-12 gap-x-6 gap-y-8 sm:grid-col-12'>
           <div className='sm:col-span-6'>
