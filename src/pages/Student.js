@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Allnav from '../components/Allnav';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export default function Student() {
   const [owners, setOwners] = useState([]);
@@ -9,7 +10,7 @@ export default function Student() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://ebackend-1llz.onrender.com/owners', {
+        const response = await axios.get('https://rentalsbackend-c5rm.onrender.com/owners', {
           headers: {
             'Content-Type': 'application/json'
           }
@@ -34,7 +35,7 @@ export default function Student() {
       setUserData(JSON.parse(storedUserData));
     } else {
       axios
-        .get('https://ebackend-1llz.onrender.com/isAuth', {
+        .get('https://rentalsbackend-c5rm.onrender.com/isAuth', {
           headers: {
             'x-access-token': localStorage.getItem('token'),
           },
@@ -62,7 +63,7 @@ export default function Student() {
     
     const { name, category, contact } = userData;
     
-    axios.post('https://ebackend-1llz.onrender.com/studentreq', {
+    axios.post('https://rentalsbackend-c5rm.onrender.com/studentreq', {
       name,
       category,
       contact,
@@ -90,6 +91,11 @@ export default function Student() {
     <div>
     <Allnav />
     <h1 className="text-center text-3xl font-bold my-8">Owners</h1>
+    <div className='flex justify-center mt-10 mb-5'>
+        <Link to='/owneracceptance'>
+          <button className='btn bg-orange-200 text-teal-950 text-xl font bold'>Enquiries</button>
+        </Link>
+      </div>
     <div className="container mx-auto px-4">
       {owners.length > 0 ? (
         chunkArray(owners, 3).map((row, rowIndex) => (
@@ -100,22 +106,22 @@ export default function Student() {
                     <figure className="h-64">
                       <div className="carousel h-full w-full">
                         <div id={`item1-${owner.id}`} className="carousel-item relative w-full">
-                          {owner.hall && <img className="w-full h-full object-cover" src={`https://ebackend-1llz.onrender.com/${owner.hall}`} alt="Hall" loading="lazy" />}
+                          {owner.hall && <img className="w-full h-full object-cover" src={`https://rentalsbackend-c5rm.onrender.com/${owner.hall}`} alt="Hall" loading="lazy" />}
                         </div> 
                         <div id={`item2-${owner.id}`} className="carousel-item relative w-full">
-                          {owner.kitchen && <img className="w-full h-full object-cover" src={`https://ebackend-1llz.onrender.com/${owner.kitchen}`} alt="Kitchen" loading="lazy" />}
+                          {owner.kitchen && <img className="w-full h-full object-cover" src={`https://rentalsbackend-c5rm.onrender.com/${owner.kitchen}`} alt="Kitchen" loading="lazy" />}
                         </div> 
                         <div id={`item3-${owner.id}`} className="carousel-item relative w-full">
-                          {owner.bedroomone && <img className="w-full h-full object-cover" src={`https://ebackend-1llz.onrender.com/${owner.bedroomone}`} alt="Bedroom One" loading="lazy" />}
+                          {owner.bedroomone && <img className="w-full h-full object-cover" src={`https://rentalsbackend-c5rm.onrender.com/${owner.bedroomone}`} alt="Bedroom One" loading="lazy" />}
                         </div> 
                         <div id={`item4-${owner.id}`} className="carousel-item relative w-full">
-                          {owner.toiletone && <img className="w-full h-full object-cover" src={`https://ebackend-1llz.onrender.com/${owner.toiletone}`} alt="Toilet One" loading="lazy" />}
+                          {owner.toiletone && <img className="w-full h-full object-cover" src={`https://rentalsbackend-c5rm.onrender.com/${owner.toiletone}`} alt="Toilet One" loading="lazy" />}
                         </div>
                         <div id={`item5-${owner.id}`} className="carousel-item relative w-full">
-                          {owner.bedroomtwo && <img className="w-full h-full object-cover" src={`https://ebackend-1llz.onrender.com/${owner.bedroomtwo}`} alt="Bedroom Two" loading="lazy" />}
+                          {owner.bedroomtwo && <img className="w-full h-full object-cover" src={`https://rentalsbackend-c5rm.onrender.com/${owner.bedroomtwo}`} alt="Bedroom Two" loading="lazy" />}
                         </div>
                         <div id={`item6-${owner.id}`} className="carousel-item relative w-full">
-                          {owner.toilettwo && <img className="w-full h-full object-cover" src={`https://ebackend-1llz.onrender.com/${owner.toilettwo}`} alt="Toilet Two" loading="lazy" />}
+                          {owner.toilettwo && <img className="w-full h-full object-cover" src={`https://rentalsbackend-c5rm.onrender.com/${owner.toilettwo}`} alt="Toilet Two" loading="lazy" />}
                         </div>
                       </div>
                       <div className="absolute translate-y-28 w-full flex justify-center py-2 gap-2">

@@ -25,7 +25,7 @@ export default function Signin() {
     e.preventDefault();
     console.log({ mail, password });
     try {
-      const response = await axios.post('https://ebackend-1llz.onrender.com/login', {
+      const response = await axios.post('https://rentalsbackend-c5rm.onrender.com/login', {
         mail: mail,
         password: password,
       });

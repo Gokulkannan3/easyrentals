@@ -48,7 +48,7 @@ export default function Register() {
       return;
     }
 
-    Axios.post(`https://ebackend-1llz.onrender.com/register`, {
+    Axios.post(`https://rentalsbackend-c5rm.onrender.com/register`, {
       name: name,
       contact: contact,
       mail: mail,

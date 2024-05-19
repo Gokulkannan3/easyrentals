@@ -46,7 +46,7 @@ export default function Owner() {
       }
     }
     try {
-      const response = await axios.post('https://ebackend-1llz.onrender.com/owner', formDataToSend, {
+      const response = await axios.post('https://rentalsbackend-c5rm.onrender.com/owner', formDataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

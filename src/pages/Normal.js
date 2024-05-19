@@ -8,7 +8,7 @@ export default function Normal() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://ebackend-1llz.onrender.com/ownern', {
+        const response = await axios.get('https://rentalsbackend-c5rm.onrender.com/ownern', {
           headers: {
             'Content-Type': 'application/json'
           }
