@@ -25,7 +25,7 @@ export default function Login() {
     e.preventDefault();
     console.log({ mail, password });
     try {
-      const response = await axios.post('http://localhost:3002/login', {
+      const response = await axios.post('https://ebackend-1llz.onrender.com/login', {
         mail: mail,
         password: password,
       });

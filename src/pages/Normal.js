@@ -8,7 +8,7 @@ export default function Normal() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3002/owners', {
+        const response = await axios.get('https://ebackend-1llz.onrender.com/owners', {
           headers: {
             'Content-Type': 'application/json'
           }
@@ -43,12 +43,12 @@ export default function Normal() {
             <p>{owner.country}</p>
             <p>{owner.category}</p>
             <div>
-              {owner.hall && <img src={`http://localhost:3002/${owner.hall}`} alt="Hall" />}
-              {owner.kitchen && <img src={`http://localhost:3002/${owner.kitchen}`} alt="Kitchen" />}
-              {owner.bedroomone && <img src={`http://localhost:3002/${owner.bedroomone}`} alt="Bedroom One" />}
-              {owner.toiletone && <img src={`http://localhost:3002/${owner.toiletone}`} alt="Toilet One" />}
-              {owner.bedroomtwo && <img src={`http://localhost:3002/${owner.bedroomtwo}`} alt="Bedroom Two" />}
-              {owner.toilettwo && <img src={`http://localhost:3002/${owner.toilettwo}`} alt="Toilet Two" />}
+              {owner.hall && <img src={`https://ebackend-1llz.onrender.com/${owner.hall}`} alt="Hall" />}
+              {owner.kitchen && <img src={`https://ebackend-1llz.onrender.com/${owner.kitchen}`} alt="Kitchen" />}
+              {owner.bedroomone && <img src={`https://ebackend-1llz.onrender.com/${owner.bedroomone}`} alt="Bedroom One" />}
+              {owner.toiletone && <img src={`https://ebackend-1llz.onrender.com/${owner.toiletone}`} alt="Toilet One" />}
+              {owner.bedroomtwo && <img src={`https://ebackend-1llz.onrender.com/${owner.bedroomtwo}`} alt="Bedroom Two" />}
+              {owner.toilettwo && <img src={`https://ebackend-1llz.onrender.com/${owner.toilettwo}`} alt="Toilet Two" />}
             </div>
           </div>
         ))
