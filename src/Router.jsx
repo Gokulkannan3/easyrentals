@@ -9,6 +9,8 @@ import Normal from "./pages/Normal";
 import Pgroom from "./pages/Pgroom";
 import Owneracpt from "./pages/Owneracpt";
 import Studacpt from "./pages/Studacpt";
+import Normalaccept from "./pages/Normalaccept";
+import Pgaccept from "./pages/Pgaccept";
 
 const AllRoutes = () =>{
     return(
@@ -22,6 +24,8 @@ const AllRoutes = () =>{
             <Route exact path="/pg" element={<Pgroom/>}/>
             <Route exact path="/owneracceptance" element={<Owneracpt/>}/>
             <Route exact path="/studentaccept" element={<Studacpt/>}/>
+            <Route exact path="/normalaccept" element={<Normalaccept/>}/>
+            <Route exact path="/pgaccept" element={<Pgaccept/>}/>
         </Routes> 
     )
 }
