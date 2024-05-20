@@ -10,7 +10,7 @@ export default function Student() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://rentalsbackend-c5rm.onrender.com/owner', {
+        const response = await axios.get('https://rentalsbackend-c5rm.onrender.com/ownerp', {
           headers: {
             'Content-Type': 'application/json'
           }
