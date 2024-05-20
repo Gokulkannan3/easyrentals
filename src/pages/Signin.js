@@ -44,8 +44,10 @@ export default function Signin() {
           navigate('/owner');
         } else if (result.category === 'Normal user') {
           navigate('/normal');
-        } else {
+        } else if(result.category === 'Pg') {
           navigate('/pg');
+        }else{
+          navigate('/login')
         }
       }
     } catch (error) {

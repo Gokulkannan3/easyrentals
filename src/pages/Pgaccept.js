@@ -22,7 +22,7 @@ export default function Pgaccept() {
     const userData = JSON.parse(storedUserData);
     const { name } = userData;
 
-    axios.get(`http://localhost:3002/studentaccept?name=${name}`, {
+    axios.get(`https://rentalsbackend-c5rm.onrender.com/studentaccept?name=${name}`, {
       headers: {
         'x-access-token': token,
       },
