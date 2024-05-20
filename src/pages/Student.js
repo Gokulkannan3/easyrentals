@@ -94,7 +94,7 @@ export default function Student() {
     <h1 className="text-center text-3xl font-bold my-8">Owners</h1>
     <div className='flex justify-center mt-10 mb-5'>
         <Link to='/studentaccept'>
-          <button className='btn bg-orange-200 text-teal-950 text-xl font bold'>Enquiries</button>
+          <button className='btn bg-orange-200 text-teal-950 text-xl font bold'>My Enquiries</button>
         </Link>
       </div>
     <div className="container mx-auto px-4">

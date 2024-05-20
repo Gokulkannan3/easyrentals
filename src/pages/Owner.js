@@ -18,7 +18,8 @@ export default function Owner() {
     bedroomone: null,
     toiletone: null,
     bedroomtwo: null,
-    toilettwo: null
+    toilettwo: null,
+    amount: ''
   });
 
   const handleChange = (e) => {
@@ -65,7 +66,8 @@ export default function Owner() {
         bedroomone: null,
         toiletone: null,
         bedroomtwo: null,
-        toilettwo: null
+        toilettwo: null,
+        amount:''
       });
     } catch (error) {
       console.error('Error submitting form:', error);
@@ -75,9 +77,12 @@ export default function Owner() {
   return (
     <div>
       <Allnav />
-      <div className='flex justify-center mt-10 mb-5'>
+      <div className='flex gap-x-10 justify-center mt-10 mb-5'>
+        <Link to='/post'>
+          <button className='btn bg-orange-200 text-teal-950 text-xl font bold'>My Posts</button>
+        </Link>
         <Link to='/owneracceptance'>
-          <button className='btn bg-orange-200 text-teal-950 text-xl font bold'>Enquiries</button>
+          <button className='btn bg-orange-200 text-teal-950 text-xl font bold'>My Enquiries</button>
         </Link>
       </div>
       <div className="flex justify-center items-center mt-10">
@@ -142,7 +147,13 @@ export default function Owner() {
             <label className="block text-xl font-medium leading-6 text-black">Additional image of washroom if any</label>
             <input type="file" name="toilettwo" onChange={handleFileChange} className="block w-full text-center rounded-md border-0 py-1.5 text-black shadow-sm ring-1 ring-inset ring-teal-950 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-teal-900 sm:text-sm sm:leading-6" required /><br />
           </div>
-          <button type="submit" className="btn bg-orange-200 text-teal-950 font-bold w-24">Submit</button>
+          <div className='sm:col-span-full'>  
+            <label className="block text-xl font-medium leading-6 text-black">Rent per month</label>
+            <input type="number" name="amount" onChange={handleChange} className="block w-full text-center rounded-md border-0 py-1.5 text-black shadow-sm ring-1 ring-inset ring-teal-950 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-teal-900 sm:text-sm sm:leading-6" required /><br />
+          </div>
+          </div>
+          <div className='flex justify-center mb-10'>
+            <button type="submit" className="btn bg-orange-200 text-teal-950 font-bold w-24">Submit</button>
           </div>
         </form>
       </div>

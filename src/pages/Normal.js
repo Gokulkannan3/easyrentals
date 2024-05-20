@@ -6,11 +6,14 @@ import { Link } from 'react-router-dom';
 export default function Normal() {
   const [owners, setOwners] = useState([]);
   const [userData, setUserData] = useState(null);
+  const [filteredOwners, setFilteredOwners] = useState([]);
+  const [filter, setFilter] = useState('');
+  const [selectedFilter, setSelectedFilter] = useState('area');
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3002/ownern', {
+        const response = await axios.get('https://rentalsbackend-c5rm.onrender.com/ownern', {
           headers: {
             'Content-Type': 'application/json'
           }
@@ -18,6 +21,7 @@ export default function Normal() {
 
         if (response.data.owners && Array.isArray(response.data.owners)) {
           setOwners(response.data.owners);
+          setFilteredOwners(response.data.owners); // Initialize filteredOwners with all owners
         } else {
           console.error('Owners data not found or is not an array');
         }
@@ -35,7 +39,7 @@ export default function Normal() {
       setUserData(JSON.parse(storedUserData));
     } else {
       axios
-        .get('http://localhost:3002/isAuth', {
+        .get('https://rentalsbackend-c5rm.onrender.com/isAuth', {
           headers: {
             'x-access-token': localStorage.getItem('token'),
           },
@@ -63,7 +67,7 @@ export default function Normal() {
     
     const { name, category, contact } = userData;
     
-    axios.post('http://localhost:3002/studentreq', {
+    axios.post('https://rentalsbackend-c5rm.onrender.com/studentreq', {
       name,
       category,
       contact,
@@ -78,6 +82,17 @@ export default function Normal() {
     });
   };
 
+  const handleFilterChange = (event) => {
+    const searchTerm = event.target.value.toLowerCase();
+    setFilter(searchTerm);
+
+    const filteredData = owners.filter((owner) => {
+      return owner.area.toLowerCase().includes(searchTerm);
+    });
+
+    setFilteredOwners(filteredData);
+  };
+
   const chunkArray = (array, size) => {
     const chunkedArr = [];
     for (let i = 0; i < array.length; i += size) {
@@ -86,24 +101,32 @@ export default function Normal() {
     return chunkedArr;
   };
 
-
-
   return (
     <div>
-    <Allnav />
-    <h1 className="text-center text-3xl font-bold my-8">Owners</h1>
-    <div className='flex justify-center mt-10 mb-5'>
+      <Allnav />
+      <h1 className="text-center text-3xl font-bold my-8">Owners</h1>
+      <div className='flex justify-center mt-10 mb-5'>
         <Link to='/normalaccept'>
-          <button className='btn bg-orange-200 text-teal-950 text-xl font bold'>Enquiries</button>
+          <button className='btn bg-orange-200 text-teal-950 text-xl font bold'>My Enquiries</button>
         </Link>
       </div>
-    <div className="container mx-auto px-4">
-      {owners.length > 0 ? (
-        chunkArray(owners, 3).map((row, rowIndex) => (
-          <div key={rowIndex} className="flex flex-wrap justify-between mb-4">
-            {row.map((owner, index) => (
-              <div key={index} className="w-1/2 sm:w-1/2 md:w-96 lg:w-1/3 p-2">
-                <div className="card bg-teal-950 text-orange-200 shadow-xl">
+      <p className='flex justify-center -translate-x-28 font-bold'>Search here by Area</p>
+      <div className='flex justify-center mb-12 mt-2'>
+        <input
+          type='text'
+          label={selectedFilter ? `Search by ${selectedFilter.charAt(0).toUpperCase() + selectedFilter.slice(1)}` : 'Search'}
+          onChange={handleFilterChange}
+          className='border-2 border-teal-950 w-96 h-12 flex justify-center text-center rounded-xl'
+          placeholder='Search by Area'
+        />
+      </div>  
+      <div className="container mx-auto px-4">
+        {filteredOwners.length > 0 ? (
+          chunkArray(filteredOwners, 3).map((row, rowIndex) => (
+            <div key={rowIndex} className="flex flex-wrap justify-between mb-4">
+              {row.map((owner, index) => (
+                <div key={index} className="w-1/2 sm:w-1/2 md:w-96 lg:w-1/3 p-2">
+                  <div className="card bg-teal-950 text-orange-200 shadow-xl">
                     <figure className="h-64">
                       <div className="carousel h-full w-full">
                         <div id={`item1-${owner.id}`} className="carousel-item relative w-full">
@@ -137,23 +160,25 @@ export default function Normal() {
                     <div className="card-body">
                       <h2 className="card-title">{owner.name}</h2>
                       <p><p className='text-lg font-bold underline'>Address : </p>{owner.address}</p>
-                        <div className="flex flex-wrap">
-                          <div className="w-1/2">
-                            <p className='text-lg font-bold underline'>Contact:</p>
-                            <p>{owner.contact}</p>
-                            <p className='text-lg font-bold underline'>Area:</p>
-                            <p>{owner.area}</p>
-                            <p className='text-lg font-bold underline'>Category:</p>
-                            <p>{owner.category}</p>
-                          </div>
-                          <div className="w-1/2">
-                            <p className='text-lg font-bold underline'>State:</p>
-                            <p>{owner.state}</p>
-                            <p className='text-lg font-bold underline'>Country:</p>
-                            <p>{owner.country}</p>
-                          </div>
+                      <div className="flex flex-wrap">
+                        <div className="w-1/2">
+                          <p className='text-lg font-bold underline'>Contact:</p>
+                          <p>{owner.contact}</p>
+                          <p className='text-lg font-bold underline'>Area:</p>
+                          <p>{owner.area}</p>
+                          <p className='text-lg font-bold underline'>Category:</p>
+                          <p>{owner.category}</p>
                         </div>
-                      <div className="card-actions justify-end">
+                        <div className="w-1/2">
+                          <p className='text-lg font-bold underline'>State:</p>
+                          <p>{owner.state}</p>
+                          <p className='text-lg font-bold underline'>Country:</p>
+                          <p>{owner.country}</p>
+                          <p className='text-lg font-bold underline'>Rent per month:</p>
+                          <p>{owner.amount}</p>
+                        </div>
+                      </div>
+                      <div className="card-actions justify-end mt-5">
                         <button onClick={() => handleEnquiry(owner)} className="btn bg-orange-200 text-lg text-teal-950">Enquire Now</button>
                       </div>
                     </div>

@@ -50,14 +50,6 @@ export default function Allnav(){
           <Divider/>
           <ListItem disablePadding className="mb-2">
             <ListItemButton>
-              <Link to='/menu' className="text-black text-lg font-semibold">
-                <ListItemText className="text-xl">Menu</ListItemText>
-              </Link>
-            </ListItemButton>
-          </ListItem>
-          <Divider/>
-          <ListItem disablePadding className="mb-2">
-            <ListItemButton>
               <Link to='/about' className="text-black text-lg font-semibold hover:text-gray-300">
                 <ListItemText className="text-xl">About</ListItemText>
               </Link>
