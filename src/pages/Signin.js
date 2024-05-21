@@ -164,7 +164,7 @@ export default function Signin() {
             <div className='lot flex justify-center items-center content-center h-96 w-96 bg-white p-4 rounded-md'>
               <Lottie
                 animationData={Animation}
-                loop={false}
+                loop={true}
                 autoplay={true}
                 className="lot"
                 style={{ width: 400, height: 400, flex:1,justifyContent:'center', alignItems:'center'}}
