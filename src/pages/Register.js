@@ -148,7 +148,7 @@ export default function Register() {
                   <option value="Select">Select</option>
                   <option value="Student">Student</option>
                   <option value="Pg">Pg</option>
-                  <option value="Normal User">Normal user</option>
+                  <option value="Normal user">Normal user</option>
                   <option value="Owner">Owner</option>
                 </select>
               </div>
