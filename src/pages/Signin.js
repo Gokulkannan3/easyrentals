@@ -8,6 +8,9 @@ import TextField from '@mui/material/TextField';
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 import '../App.css';
+import Modal from 'react-modal';
+import Lottie from 'lottie-react';
+import Animation from './ani.json';
 
 export default function Signin() {
   const [mail, setMail] = useState('');
@@ -16,6 +19,7 @@ export default function Signin() {
   const [showPassword, setShowPassword] = useState(false);
   const [loginStatus, setLoginStatus] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const handleTogglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -34,27 +38,33 @@ export default function Signin() {
         setShowPopup(true);
       } else {
         setLoginStatus(true);
+        setModalIsOpen(true);
         const { token, result, owners } = response.data;
         localStorage.setItem('token', token);
         localStorage.setItem('userData', JSON.stringify(result));
-        localStorage.setItem('ownersData', JSON.stringify(owners)); // Store owners data in local storage
-        if (result.category === 'Student') {
-          navigate('/student');
-        } else if (result.category === 'Owner') {
-          navigate('/owner');
-        } else if (result.category === 'Normal user') {
-          navigate('/normal');
-        } else if(result.category === 'Pg') {
-          navigate('/pg');
-        }else{
-          navigate('/login')
-        }
+        localStorage.setItem('ownersData', JSON.stringify(owners));
+
+        setTimeout(() => {
+          if (result.category === 'Student') {
+            navigate('/student');
+          } else if (result.category === 'Owner') {
+            navigate('/owner');
+          } else if (result.category === 'Normal user') {
+            navigate('/normal');
+          } else if (result.category === 'Pg') {
+            navigate('/pg');
+          } else {
+            navigate('/login');
+          }
+          setModalIsOpen(false);
+        }, 10000);
       }
     } catch (error) {
       console.error('An unexpected error occurred:', error.message);
       setShowPopup(true);
     }
   };
+    
 
   return (
     <Box
@@ -143,6 +153,26 @@ export default function Signin() {
           </div>
         </div>
       </div>
+      <div className='flex justify-center items-center'>
+          <Modal
+            isOpen={modalIsOpen}
+            contentLabel="Registration Success Modal"
+            ariaHideApp={false}
+            className='flex justify-center items-center content-center h-screen w-screen fixed top-0 left-0'
+            overlayClassName='fixed inset-0 bg-gray-500 bg-opacity-75'
+          >
+            <div className='lot flex justify-center items-center content-center h-96 w-96 bg-white p-4 rounded-md'>
+              <Lottie
+                animationData={Animation}
+                loop={false}
+                autoplay={true}
+                className="lot"
+                style={{ width: 400, height: 400, flex:1,justifyContent:'center', alignItems:'center'}}
+              />
+              
+            </div>
+          </Modal>
+        </div>
     </Box>
   );
 }
