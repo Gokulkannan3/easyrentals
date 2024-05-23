@@ -3,14 +3,14 @@ import Allnav from '../components/Allnav';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-export default function Student() {
+export default function Pgroom() {
   const [owners, setOwners] = useState([]);
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://rentalsbackend-c5rm.onrender.com/ownerp', {
+        const response = await axios.get('https://rentalsbackend-c5rm.onrender.com/owners', {
           headers: {
             'Content-Type': 'application/json'
           }
@@ -68,7 +68,8 @@ export default function Student() {
       category,
       contact,
       ownername: owner.name,
-      ownercontact:owner.contact
+      ownercontact:owner.contact,
+      ownermail:owner.mail,
     })
     .then((response) => {
       console.log('User details sent to the backend successfully');
@@ -93,7 +94,7 @@ export default function Student() {
     <Allnav />
     <h1 className="text-center text-3xl font-bold my-8">Owners</h1>
     <div className='flex justify-center mt-10 mb-5'>
-        <Link to='/pgaccept'>
+        <Link to='/studentaccept'>
           <button className='btn bg-orange-200 text-teal-950 text-xl font bold'>My Enquiries</button>
         </Link>
       </div>
