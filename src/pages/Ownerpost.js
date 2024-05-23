@@ -56,7 +56,7 @@ export default function Ownerpost() {
     return (
         <div>
             <Allnav />
-            <h1 className="text-center text-3xl font-bold my-8">Enquiries</h1>
+            <h1 className="text-center text-3xl font-bold my-8">My Posts</h1>
             <div>
                 {enquiries.length > 0 ? (
                     <div className='card w-96 bg-orange-200 text-teal-950 shadow-xl mx-auto px-4'>
