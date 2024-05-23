@@ -63,7 +63,7 @@ export default function Student() {
     
     const { name, category, contact } = userData;
     
-    axios.post('http://localhost:3002/studentreq', {
+    axios.post('https://rentalsbackend-c5rm.onrender.com/studentreq', {
       name,
       category,
       contact,
