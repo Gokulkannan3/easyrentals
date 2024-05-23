@@ -68,7 +68,7 @@ export default function Ownerpost() {
                                 <p>Address: {enquiry.address}</p>
                                 <p>Category: {enquiry.category}</p>
                                 <p>Contact: {enquiry.contact}</p>
-                                <p>Status: {enquiry.status}</p>
+                                <p>Rent Amount: {enquiry.amount}</p>
                                 <div className="card-actions justify-end">
                                     <button className='btn w-24 text-xl bg-orange-200 text-teal-950 border-teal-950 hover:bg-teal-950 hover:text-orange-200' onClick={() => handleCancelEnquiry(enquiry.id)}>Delete</button>
                                 </div>
