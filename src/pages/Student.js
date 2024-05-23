@@ -63,12 +63,13 @@ export default function Student() {
     
     const { name, category, contact } = userData;
     
-    axios.post('https://rentalsbackend-c5rm.onrender.com/studentreq', {
+    axios.post('http://localhost:3002/studentreq', {
       name,
       category,
       contact,
       ownername: owner.name,
-      ownercontact:owner.contact
+      ownercontact:owner.contact,
+      ownermail:owner.mail,
     })
     .then((response) => {
       console.log('User details sent to the backend successfully');
