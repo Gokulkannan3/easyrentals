@@ -9,8 +9,8 @@ import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 import '../App.css';
 import Modal from 'react-modal';
-import Lottie from 'lottie-react';
-import Animation from './ani.json';
+import './Sig.css'
+
 
 export default function Signin() {
   const [mail, setMail] = useState('');
@@ -161,15 +161,25 @@ export default function Signin() {
             className='flex justify-center items-center content-center h-screen w-screen fixed top-0 left-0'
             overlayClassName='fixed inset-0 bg-gray-500 bg-opacity-75'
           >
-            <div className='lot flex justify-center items-center content-center h-96 w-96 bg-white p-4 rounded-md'>
-              <Lottie
-                animationData={Animation}
-                loop={true}
-                autoplay={true}
-                className="lot"
-                style={{ width: 400, height: 400, flex:1,justifyContent:'center', alignItems:'center'}}
-              />
-              
+            <div className='lot flex justify-center items-center content-center h-96 w-96 bg-black p-4 rounded-md'>
+              <div aria-label="Orange and tan hamster running in a metal wheel" role="img" class="wheel-and-hamster">
+                <div class="wheel"></div>
+                <div class="hamster">
+                  <div class="hamster__body">
+                    <div class="hamster__head">
+                      <div class="hamster__ear"></div>
+                      <div class="hamster__eye"></div>
+                      <div class="hamster__nose"></div>
+                    </div>
+                    <div class="hamster__limb hamster__limb--fr"></div>
+                    <div class="hamster__limb hamster__limb--fl"></div>
+                    <div class="hamster__limb hamster__limb--br"></div>
+                    <div class="hamster__limb hamster__limb--bl"></div>
+                    <div class="hamster__tail"></div>
+                  </div>
+                </div>
+                <div class="spoke"></div>
+              </div>
             </div>
           </Modal>
         </div>
