@@ -3,6 +3,9 @@ import Mainnav from '../components/Mainnav'
 import home from '../images/h-removebg-preview.png'
 import hmap from '../images/hmap-removebg-preview.png'
 import studhome from '../images/studhome-removebg-preview.png'
+import house from '../images/House-Home.jpg'
+import student from '../images/Student-home-min.png'
+import { Link } from 'react-router-dom'
 
 export default function Home() {
   return (
@@ -66,7 +69,36 @@ export default function Home() {
             </div>
           </div> 
         </div>
-        Home
+        <div className='mt-10'>
+          <img className='flex justify-start translate-x-10 w-1/3' src={house} alt='home' />
+          <div className='flex justify-end -translate-y-72 -translate-x-28'>
+            <p className='text-6xl font-bold text-teal-950'>Where Rentals made Easy!!</p>
+          </div>
+          <div className='flex justify-end -translate-y-64 -translate-x-28'>
+            <p className='text-6xl text-teal-400 font-bold'>Your dream home is just a click!!</p>
+          </div>
+          <div className='flex justify-end -translate-x-1/4 my-10 -translate-y-60'>
+            <Link to='/login'>
+              <button className='btn bg-teal-950 text-orange-200 text-2xl font-bold hover:bg-orange-200 hover:text-teal-950'>Book Now</button>
+            </Link>
+          </div>
+        </div>
+        <div>
+          <div className='flex justify-end -translate-x-28'>
+            <img className='flex justify-end w-1/3' src={student} alt='home' />
+          </div>
+          <div className='flex justify-start -translate-y-72 translate-x-24'>
+            <p className='text-6xl font-bold text-teal-950'>Being college student!!</p>
+          </div>
+          <div className='flex justify-start -translate-y-64 translate-x-24'>
+            <p className='text-6xl text-teal-400 font-bold'>Find houses in just a click!!</p>
+          </div>
+          <div className='flex justify-start -translate-y-72 translate-x-80 my-24'>
+            <Link to='/login'>
+              <button className='btn bg-teal-950 text-orange-200 text-2xl font-bold hover:bg-orange-200 hover:text-teal-950'>Students Booking</button>
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   )
