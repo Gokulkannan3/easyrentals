@@ -1,6 +1,25 @@
+#Project Idea
+
+This rental application works based on the role based authentication.
+Where in the user while login will be checked on four types of category
+1) Owner
+2) Normal User
+3) Student
+4) PG Rooms
+Based on this their bookings will be different Mkaes easy way of finding out invividual user category based houses.
+
+The owner will be posting the house for based on the three categories so that the data can be filtered easily and ca be seen by the each category user.
+The enuriry raised by normal user or student or pg room users notifications will be sent to owner via node mailer the mail sent to the owner.
+Can also see the enquiries by the app ans should be able to accept the request after the enquiry and also cancel if the owner is not satisfied and if canceled entire databade of selecte enquiry will be deleted.
+
+If the owner accepts the enquiry request mail will be sent via node mailer to the user whoe requested for enquiry.
+
+#Link for the live app
+Website URL -> (https://easyrentals.vercel.app/).
+
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
