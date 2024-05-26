@@ -61,10 +61,11 @@ export default function Student() {
       return;
     }
     
-    const { name, category, contact } = userData;
+    const { name, mail, category, contact } = userData;
     
     axios.post('https://rentalsbackend-c5rm.onrender.com/studentreq', {
       name,
+      mail,
       category,
       contact,
       ownername: owner.name,
