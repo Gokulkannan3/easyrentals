@@ -6,10 +6,13 @@ import studhome from '../images/studhome-removebg-preview.png'
 import house from '../images/House-Home.jpg'
 import student from '../images/Student-home-min.png'
 import { Link } from 'react-router-dom'
+import logo from '../images/inst.png'
+import logo1 from '../images/what.png'
+import logo2 from '../images/youtube.png'
 
 export default function Home() {
   return (
-    <div>
+    <div className='h-screen overflow-x-hidden'>
       <Mainnav/>
       <div>
         <div className="carousel w-full">
@@ -100,6 +103,22 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <footer className="footer footer-center p-10 bg-orange-200 text-teal-950 font-semibold rounded">
+        <nav className="grid grid-flow-col gap-4">
+          <p className="link link-hover">About us</p>
+          <p className="link link-hover">Contact</p>
+        </nav> 
+        <nav>
+          <div className="grid grid-flow-col gap-4">
+            <button><img src={logo} alt='logo'/></button>
+            <button><img src={logo1} alt='logo'/></button>
+            <button><img src={logo2} alt='logo'/></button>
+          </div>
+        </nav> 
+        <aside>
+          <p>Copyright © 2024 - All right reserved by ACME Industries Ltd</p>
+        </aside>
+      </footer>
     </div>
   )
 }
