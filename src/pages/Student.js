@@ -2,9 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Allnav from '../components/Allnav';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import logo from '../images/inst.png'
-import logo1 from '../images/what.png'
-import logo2 from '../images/youtube.png'
 
 export default function Student() {
   const [owners, setOwners] = useState([]);
@@ -171,22 +168,6 @@ export default function Student() {
           <p>No owners found</p>
         )}
       </div>
-      <footer className="footer footer-center p-10 bg-orange-200 text-teal-950 font-semibold rounded">
-        <nav className="grid grid-flow-col gap-4">
-          <p className="link link-hover">About us</p>
-          <p className="link link-hover">Contact</p>
-        </nav> 
-        <nav>
-          <div className="grid grid-flow-col gap-4">
-            <button><img src={logo} alt='logo'/></button>
-            <button><img src={logo1} alt='logo'/></button>
-            <button><img src={logo2} alt='logo'/></button>
-          </div>
-        </nav> 
-        <aside>
-          <p>Copyright © 2024 - All right reserved by ACME Industries Ltd</p>
-        </aside>
-      </footer>
     </div>
   );
 }
