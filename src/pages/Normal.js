@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 export default function Normal() {
   const [owners, setOwners] = useState([]);
   const [userData, setUserData] = useState(null);
+  const [activeIndex, setActiveIndex] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,6 +28,9 @@ export default function Normal() {
     };
 
     fetchData();
+    const interval = setInterval(fetchData, 5000);
+
+    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
@@ -55,13 +59,30 @@ export default function Normal() {
     }
   }, []);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prevIndex) => {
+        const newIndex = { ...prevIndex };
+        owners.forEach((owner) => {
+          if (!newIndex[owner.id]) {
+            newIndex[owner.id] = 0;
+          }
+          newIndex[owner.id] = (newIndex[owner.id] + 1) % 6;
+        });
+        return newIndex;
+      });
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [owners]);
+
   const handleEnquiry = (owner) => {
     if (!userData || !owner) {
       console.error('User data or owner not available');
       return;
     }
     
-    const { name,mail, category, contact } = userData;
+    const { name, mail, category, contact } = userData;
     
     axios.post('https://rentalsbackend-c5rm.onrender.com/studentreq', {
       name,
@@ -69,8 +90,8 @@ export default function Normal() {
       category,
       contact,
       ownername: owner.name,
-      ownercontact:owner.contact,
-      ownermail:owner.mail,
+      ownercontact: owner.contact,
+      ownermail: owner.mail,
     })
     .then((response) => {
       console.log('User details sent to the backend successfully');
@@ -88,73 +109,79 @@ export default function Normal() {
     return chunkedArr;
   };
 
-
-
   return (
     <div>
-    <Allnav />
-    <h1 className="text-center text-3xl font-bold my-8">Owners</h1>
-    <div className='flex justify-center mt-10 mb-5'>
+      <Allnav />
+      <h1 className="text-center text-3xl font-bold my-8">Owners</h1>
+      <div className='flex justify-center mt-10 mb-5'>
         <Link to='/studentaccept'>
           <button className='btn bg-orange-200 text-teal-950 text-xl font bold'>My Enquiries</button>
         </Link>
       </div>
-    <div className="container mx-auto px-4">
-      {owners.length > 0 ? (
-        chunkArray(owners, 3).map((row, rowIndex) => (
-          <div key={rowIndex} className="flex flex-wrap justify-between mb-4">
-            {row.map((owner, index) => (
-              <div key={index} className="w-1/2 sm:w-1/2 md:w-96 lg:w-1/3 p-2">
-                <div className="card bg-teal-950 text-orange-200 shadow-xl">
+      <div className="container mx-auto px-4">
+        {owners.length > 0 ? (
+          chunkArray(owners, 3).map((row, rowIndex) => (
+            <div key={rowIndex} className="flex flex-wrap justify-between mb-4">
+              {row.map((owner, index) => (
+                <div key={index} className="w-1/2 sm:w-1/2 md:w-96 lg:w-1/3 p-2">
+                  <div className="card bg-teal-950 text-orange-200 shadow-xl">
                     <figure className="h-64">
-                      <div className="carousel h-full w-full">
-                        <div id={`item1-${owner.id}`} className="carousel-item relative w-full">
-                          {owner.hall && <img className="w-full h-full object-cover" src={`https://rentalsbackend-c5rm.onrender.com/${owner.hall}`} alt="Hall" loading="lazy" />}
-                        </div> 
-                        <div id={`item2-${owner.id}`} className="carousel-item relative w-full">
-                          {owner.kitchen && <img className="w-full h-full object-cover" src={`https://rentalsbackend-c5rm.onrender.com/${owner.kitchen}`} alt="Kitchen" loading="lazy" />}
-                        </div> 
-                        <div id={`item3-${owner.id}`} className="carousel-item relative w-full">
-                          {owner.bedroomone && <img className="w-full h-full object-cover" src={`https://rentalsbackend-c5rm.onrender.com/${owner.bedroomone}`} alt="Bedroom One" loading="lazy" />}
-                        </div> 
-                        <div id={`item4-${owner.id}`} className="carousel-item relative w-full">
-                          {owner.toiletone && <img className="w-full h-full object-cover" src={`https://rentalsbackend-c5rm.onrender.com/${owner.toiletone}`} alt="Toilet One" loading="lazy" />}
-                        </div>
-                        <div id={`item5-${owner.id}`} className="carousel-item relative w-full">
-                          {owner.bedroomtwo && <img className="w-full h-full object-cover" src={`https://rentalsbackend-c5rm.onrender.com/${owner.bedroomtwo}`} alt="Bedroom Two" loading="lazy" />}
-                        </div>
-                        <div id={`item6-${owner.id}`} className="carousel-item relative w-full">
-                          {owner.toilettwo && <img className="w-full h-full object-cover" src={`https://rentalsbackend-c5rm.onrender.com/${owner.toilettwo}`} alt="Toilet Two" loading="lazy" />}
+                      <div className="carousel h-full w-full relative overflow-hidden">
+                        <div
+                          className="flex transition-transform duration-2000 ease-in-out"
+                          style={{ transform: `translateX(-${(activeIndex[owner.id] || 0) * 100}%)` }}
+                        >
+                          {['hall', 'kitchen', 'bedroomone', 'toiletone', 'bedroomtwo', 'toilettwo'].map((imageKey, imgIndex) => (
+                            <div
+                              key={imgIndex}
+                              className="carousel-item w-full flex-shrink-0"
+                            >
+                              {owner[imageKey] && (
+                                <img
+                                  className="w-full h-full object-cover"
+                                  src={`https://rentalsbackend-c5rm.onrender.com/${owner[imageKey]}`}
+                                  alt={imageKey}
+                                  loading="lazy"
+                                />
+                              )}
+                            </div>
+                          ))}
                         </div>
                       </div>
                       <div className="absolute translate-y-28 w-full flex justify-center py-2 gap-2">
-                        <a href={`#item1-${owner.id}`} className="btn btn-xs">1</a>
-                        <a href={`#item2-${owner.id}`} className="btn btn-xs">2</a>
-                        <a href={`#item3-${owner.id}`} className="btn btn-xs">3</a>
-                        <a href={`#item4-${owner.id}`} className="btn btn-xs">4</a>
-                        <a href={`#item5-${owner.id}`} className="btn btn-xs">5</a>
-                        <a href={`#item6-${owner.id}`} className="btn btn-xs">6</a>
+                        {Array.from({ length: 6 }).map((_, btnIndex) => (
+                          <button
+                            key={btnIndex}
+                            className={`btn btn-xs ${activeIndex[owner.id] === btnIndex ? 'btn-active' : ''}`}
+                            onClick={() => setActiveIndex((prevIndex) => ({
+                              ...prevIndex,
+                              [owner.id]: btnIndex
+                            }))}
+                          >
+                            {btnIndex + 1}
+                          </button>
+                        ))}
                       </div>
                     </figure>
                     <div className="card-body">
                       <h2 className="card-title">{owner.name}</h2>
-                      <p><p className='text-lg font-bold underline'>Address : </p>{owner.address}</p>
-                        <div className="flex flex-wrap">
-                          <div className="w-1/2">
-                            <p className='text-lg font-bold underline'>Contact:</p>
-                            <p>{owner.contact}</p>
-                            <p className='text-lg font-bold underline'>Area:</p>
-                            <p>{owner.area}</p>
-                            <p className='text-lg font-bold underline'>Category:</p>
-                            <p>{owner.category}</p>
-                          </div>
-                          <div className="w-1/2">
-                            <p className='text-lg font-bold underline'>State:</p>
-                            <p>{owner.state}</p>
-                            <p className='text-lg font-bold underline'>Country:</p>
-                            <p>{owner.country}</p>
-                          </div>
+                      <p><span className='text-lg font-bold underline'>Address:</span> {owner.address}</p>
+                      <div className="flex flex-wrap">
+                        <div className="w-1/2">
+                          <p className='text-lg font-bold underline'>Contact:</p>
+                          <p>{owner.contact}</p>
+                          <p className='text-lg font-bold underline'>Area:</p>
+                          <p>{owner.area}</p>
+                          <p className='text-lg font-bold underline'>Category:</p>
+                          <p>{owner.category}</p>
                         </div>
+                        <div className="w-1/2">
+                          <p className='text-lg font-bold underline'>State:</p>
+                          <p>{owner.state}</p>
+                          <p className='text-lg font-bold underline'>Country:</p>
+                          <p>{owner.country}</p>
+                        </div>
+                      </div>
                       <div className="card-actions justify-end">
                         <button onClick={() => handleEnquiry(owner)} className="btn bg-orange-200 text-lg text-teal-950">Enquire Now</button>
                       </div>
