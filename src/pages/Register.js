@@ -210,30 +210,30 @@ export default function Register() {
       </footer>
 
       <div className='flex justify-center items-center'>
-        <Modal
-          isOpen={modalIsOpen}
-          contentLabel="Registration Success Modal"
-          ariaHideApp={false}
-          className='flex justify-center items-center content-center h-screen w-screen fixed top-0 left-0'
-          overlayClassName='fixed inset-0 bg-gray-500 bg-opacity-75'
-        >
-          <div className='lot flex justify-center items-center content-center h-96 w-96 bg-white p-4 rounded-md'>
-            <Lottie
-              animationData={Animation}
-              loop={false}
-              autoplay={true}
-              className="lot"
-              style={{ width: 400, height: 400, flex:1,justifyContent:'center', alignItems:'center'}}
-            />
-            
-          </div>
-          <Link to='/login'>
-            <button onClick={closeModal} className='close bg-red-500 w-16 h-16 -translate-y-56 text-white rounded-full font-black'>
-                X
-            </button>
-          </Link>
-        </Modal>
-      </div>
+          <Modal
+            isOpen={modalIsOpen}
+            contentLabel="Registration Success Modal"
+            ariaHideApp={false}
+            className='flex justify-center items-center content-center h-screen w-screen fixed top-0 left-0'
+            overlayClassName='fixed inset-0 bg-gray-500 bg-opacity-75'
+          >
+            <div className='lot flex justify-center items-center content-center h-96 w-96 bg-white p-4 rounded-md'>
+              <Lottie
+                animationData={Animation}
+                loop={false}
+                autoplay={true}
+                className="lot"
+                style={{ width: 400, height: 400, flex:1,justifyContent:'center', alignItems:'center'}}
+              />
+              
+            </div>
+            <Link to='/login'>
+              <button onClick={closeModal} className='close bg-red-500 w-16 h-16 -translate-y-56 text-white rounded-full font-black'>
+                  X
+              </button>
+            </Link>
+          </Modal>
+        </div>
     </div>
   );
 }

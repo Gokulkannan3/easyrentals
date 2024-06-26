@@ -3,9 +3,6 @@ import axios from 'axios';
 import Allnav from '../components/Allnav';
 import '../App.css';
 import { Link } from 'react-router-dom';
-import Modal from 'react-modal';
-import Lottie from 'lottie-react';
-import Animation from './animation.json';
 
 export default function Owner() {
   const [formData, setFormData] = useState({
@@ -25,8 +22,6 @@ export default function Owner() {
     toilettwo: null,
     amount: ''
   });
-
-  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -76,7 +71,6 @@ export default function Owner() {
         toilettwo: null,
         amount: ''
       });
-      setModalIsOpen(true);
     } catch (error) {
       console.error('Error submitting form:', error);
     }
@@ -167,29 +161,6 @@ export default function Owner() {
             <button type="submit" className="btn bg-orange-200 text-teal-950 font-bold w-24">Submit</button>
           </div>
         </form>
-      </div>
-      <div className='flex justify-center items-center'>
-        <Modal
-          isOpen={modalIsOpen}
-          contentLabel="Registration Success Modal"
-          ariaHideApp={false}
-          className='flex justify-center items-center content-center h-screen w-screen fixed top-0 left-0'
-          overlayClassName='fixed inset-0 bg-gray-500 bg-opacity-75'
-        >
-          <div className='lot flex justify-center items-center content-center h-96 w-96 bg-white p-4 rounded-md'>
-            <Lottie
-              animationData={Animation}
-              loop={false}
-              autoplay={true}
-              className="lot"
-              style={{ width: 400, height: 400, flex:1,justifyContent:'center', alignItems:'center'}}
-            />
-            
-          </div>
-            <button onClick={setModalIsOpen(false)} className='close bg-red-500 w-16 h-16 -translate-y-56 text-white rounded-full font-black'>
-                X
-            </button>
-        </Modal>
       </div>
     </div>
   );
