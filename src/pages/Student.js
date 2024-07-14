@@ -72,9 +72,9 @@ export default function Student() {
         });
         return newIndexes;
       });
-    }, 3000); // Change slide every 3 seconds
+    }, 3000);
 
-    return () => clearInterval(interval); // Clear interval on component unmount
+    return () => clearInterval(interval);
   }, [owners]);
 
   const handleEnquiry = (owner) => {

@@ -8,9 +8,9 @@ import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 import Snav from '../components/Signupnav';
 import '../App.css';
-import logo from '../images/inst.png'
-import logo1 from '../images/what.png'
-import logo2 from '../images/youtube.png'
+import logo from '../images/inst.png';
+import logo1 from '../images/what.png';
+import logo2 from '../images/youtube.png';
 
 export default function Register() {
   const [name, setName] = useState('');
@@ -148,7 +148,7 @@ export default function Register() {
               <label htmlFor="category" className="block text-xl font-medium leading-6 text-black">Category</label>
               <div className="mt-2">
                 <select id="category" name="category" onChange={(e) => setCategory(e.target.value)} value={category} className="block w-full text-center rounded-md border-0 py-1.5 text-black shadow-sm ring-1 ring-inset ring-teal-950 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-teal-900 sm:text-sm sm:leading-6">
-                  <option value="Select">Select</option>
+                  <option>Select</option>
                   <option value="Student">Student</option>
                   <option value="Pg">Pg</option>
                   <option value="Normal user">Normal user</option>
